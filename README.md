@@ -9,3 +9,9 @@ Based on conanio/gcc or conanio/clang, additional tools includes:
 - clang-format
 - cmake-format
 - dot
+
+Run 
+```python
+python script/run.py
+```
+to generate Dockerfiles into `/release` folder.
