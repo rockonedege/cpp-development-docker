@@ -1,4 +1,5 @@
 import re
+import os
 from pathlib import Path
 
 PWD = Path(__file__).absolute().parent
@@ -21,7 +22,7 @@ def make_dockerfiles(image_bases):
     for image_base in image_bases:
         filename = get_name_from_tag(image_base)
         make_dockerfile(image_base)
-        print(f'Done: {image_base} => {filename}.')
+        print(f'Done: {image_base} => {filename}')
 
 
 def make_build_scripts(image_bases):
@@ -31,9 +32,10 @@ def make_build_scripts(image_bases):
         name = get_name_from_tag(i)
         lines.append(f'docker build --rm --tag {tag} -f "{name}" .')
 
-    to = RELEASE / 'build.bat'
+    ext = 'sh' if os.name == 'posix' else "bat"
+    to = RELEASE / f'build.{ext}'
     to.write_text('\n'.join(lines))
-    print(f'Done: docker build script => {to}.')
+    print(f'Done: docker build script => {to}')
 
 
 def main():
