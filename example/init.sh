@@ -1,29 +1,16 @@
-echo 'start initiating the docker environment'
-echo '======================================='
-echo "ninja " &&  ninja --version 
-cppcheck --version
-cmake --version  | grep -i -A 1 'version'
-vcpkg version    | grep -i -A 1 'version'
-cc --version  | grep -i -A 1 'version'
-clang-format --version
-clang-tidy --version
-dot -V
-echo '======================================='
+echo '======================================================='
+echo '    Additional C++ tools in this docker environment'
+echo
+echo ninja $(ninja --version) 
+echo $(cppcheck     --version)
+echo $(cmake        --version | grep -i -C 0 'version')
+echo $(clang-format --version | grep -i -C 0 'version')
+echo $(clang-tidy   --version | grep -i -C 0 'version')
+dot          -V | grep -i -C 0 'version'
+cc           --version  | grep -i -C 0 'version'
+vcpkg        version 
 
-vcpkg install \
-        boost-date-time \
-        boost-log \
-        boost-thread \
-        boost-system \
-        boost-filesystem \
-        boost-exception \
-        boost-timer \
-        boost-chrono \
-        boost-program-options \
-        boost-iostreams \
-        boost-uuid \
-        boost-test \
-        fmt \
-        pybind11
+# vcpkg list 
+echo '======================================================='
 
 /bin/bash 
