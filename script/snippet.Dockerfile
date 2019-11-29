@@ -47,7 +47,8 @@ RUN pip install -qqq cmake_format
 
 USER conan
 
-COPY ./manifest.sh /scripts/manifest.sh
+COPY install-common.sh /scripts/install-common.sh
+COPY manifest.sh /scripts/manifest.sh
 CMD [ "sh", "-c", "/scripts/manifest.sh; bash"]
 
 WORKDIR /workspace
